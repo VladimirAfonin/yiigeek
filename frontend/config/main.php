@@ -53,6 +53,10 @@ return [
             'rules' => [
             ],
         ],
+        // second service locator(registry pattern)
+        'common' => [
+            'class' => 'frontend\components\Common'
+        ],
 
     ],
     'params' => $params,
