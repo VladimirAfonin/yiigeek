@@ -6,11 +6,19 @@ $params = array_merge(
     require __DIR__ . '/params-local.php'
 );
 
+// set our alias
+Yii::setAlias('@test', '@frontend/test');
+
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'main' => [
+            'class' => 'app\modules\main\Module',
+        ],
+    ],
     'homeUrl' => '/',
     'components' => [
         'request' => [
