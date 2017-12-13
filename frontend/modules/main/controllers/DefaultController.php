@@ -37,6 +37,7 @@ class DefaultController extends Controller
         $component = new Common();
 //        $component = Yii::$app->common;
         $component->on(Common::EVENT_NOTIFY, [$component, 'notifyAdmin']);
+        $component->on(Common::EVENT_NOTIFY, [$component, 'notifyAdminSecond']);
         $component->sendMail("test@test", 'name', 'subject', 'some body text');
         $component->off(Common::EVENT_NOTIFY, [$component, 'notifyAdmin']);
     }

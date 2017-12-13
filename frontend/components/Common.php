@@ -22,6 +22,13 @@ class Common extends Component
 
     public function notifyAdmin($event)
     {
-        echo 'notify admin of some event';
+        echo 'notify admin of some first event';
     }
+
+    public function notifyAdminSecond($event)
+    {
+        echo "<br>notify admin second event";
+    }
+
+
 }
