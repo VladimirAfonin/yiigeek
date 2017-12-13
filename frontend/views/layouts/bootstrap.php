@@ -9,15 +9,14 @@ MainAsset::register($this) ?>
 <html lang="en">
 <head>
     <title><?= $this->title ?></title>
-    <meta charset="<?= Yii::$app->charset ?>" />
+    <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?= Html::csrfMetaTags() ?>
-<?php $this->head() ?>
+    <?php $this->head() ?>
 </head>
 
 <body>
 <?php $this->beginBody() ?>
-
 
 <!-- Header Starts -->
 <div class="navbar-wrapper">
@@ -27,7 +26,8 @@ MainAsset::register($this) ?>
             <div class="navbar-header">
 
 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -40,11 +40,11 @@ MainAsset::register($this) ?>
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="index.html" >Home</a></li>
-                    <li><a href="about.html" >About</a></li>
-                    <li><a href="agents.html" >Agents</a></li>
-                    <li><a href="blog.html" >Blog</a></li>
-                    <li><a href="contact.html" >Contact</a></li>
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <!-- #Nav Ends -->
@@ -56,19 +56,16 @@ MainAsset::register($this) ?>
 <!-- #Header Starts -->
 
 
-
-
-
 <div class="container">
 
     <!-- Header Starts -->
     <div class="header">
-        <a href="index.html" ><img src="images/logo.png"  alt="Realestate"></a>
+        <a href="index.html"><img src="images/logo.png" alt="Realestate"></a>
 
         <ul class="pull-right">
-            <li><a href="buysalerent.html" >Buy</a></li>
-            <li><a href="buysalerent.html" >Sale</a></li>
-            <li><a href="buysalerent.html" >Rent</a></li>
+            <li><a href="buysalerent.html">Buy</a></li>
+            <li><a href="buysalerent.html">Sale</a></li>
+            <li><a href="buysalerent.html">Rent</a></li>
         </ul>
     </div>
     <!-- #Header Starts -->
@@ -76,22 +73,18 @@ MainAsset::register($this) ?>
 
 <?= $content ?>
 
-
-
 <div class="footer">
 
     <div class="container">
-
-
 
         <div class="row">
             <div class="col-lg-3 col-sm-3">
                 <h4>Information</h4>
                 <ul class="row">
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="about.html" >About</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="agents.html" >Agents</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html" >Blog</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html" >Contact</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="about.html">About</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="agents.html">Agents</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html">Blog</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
 
@@ -100,15 +93,16 @@ MainAsset::register($this) ?>
                 <p>Get notified about the latest properties in our marketplace.</p>
                 <form class="form-inline" role="form">
                     <input type="text" placeholder="Enter Your email address" class="form-control">
-                    <button class="btn btn-success" type="button">Notify Me!</button></form>
+                    <button class="btn btn-success" type="button">Notify Me!</button>
+                </form>
             </div>
 
             <div class="col-lg-3 col-sm-3">
                 <h4>Follow us</h4>
-                <a href="#"><img src="images/facebook.png"  alt="facebook"></a>
-                <a href="#"><img src="images/twitter.png"  alt="twitter"></a>
-                <a href="#"><img src="images/linkedin.png"  alt="linkedin"></a>
-                <a href="#"><img src="images/instagram.png"  alt="instagram"></a>
+                <a href="#"><img src="images/facebook.png" alt="facebook"></a>
+                <a href="#"><img src="images/twitter.png" alt="twitter"></a>
+                <a href="#"><img src="images/linkedin.png" alt="linkedin"></a>
+                <a href="#"><img src="images/instagram.png" alt="instagram"></a>
             </div>
 
             <div class="col-lg-3 col-sm-3">
@@ -119,12 +113,11 @@ MainAsset::register($this) ?>
                     <span class="glyphicon glyphicon-earphone"></span> (123) 456-7890</p>
             </div>
         </div>
-        <p class="copyright">Copyright 2013. All rights reserved.	</p>
+        <p class="copyright">Copyright 2013. All rights reserved. </p>
 
 
-    </div></div>
-
-
+    </div>
+</div>
 
 
 <!-- Modal -->
@@ -141,7 +134,8 @@ MainAsset::register($this) ?>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputPassword2">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleInputPassword2"
+                                   placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -154,7 +148,8 @@ MainAsset::register($this) ?>
                 <div class="col-sm-6">
                     <h4>New User Sign Up</h4>
                     <p>Join today and get updated with all the properties deal happening around.</p>
-                    <button type="submit" class="btn btn-info"  onclick="window.location.href='register.html'">Join Now</button>
+                    <button type="submit" class="btn btn-info" onclick="window.location.href='register.html'">Join Now
+                    </button>
                 </div>
 
             </div>
@@ -162,7 +157,6 @@ MainAsset::register($this) ?>
     </div>
 </div>
 <!-- /.modal -->
-
 
 <?php $this->endBody() ?>
 </body>
