@@ -60,9 +60,15 @@ class SignupForm extends Model
         return $user->save() ? $user : null;
     }
 
+    /**
+     * сценарий валидации при регистрации,
+     * берем только то что нужно
+     */
     public function scenarios()
     {
-        $scenario = parent::scenarios();
-        return ;
+        $scenarios = parent::scenarios();
+        $scenarios['short_register'] = ['username', 'email'];
+        $scenarios['short_register2'] = ['username', 'email', 'password'];
+        return $scenarios;
     }
 }

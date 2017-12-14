@@ -91,10 +91,12 @@ MainAsset::register($this) ?>
             <div class="col-lg-3 col-sm-3">
                 <h4>Newsletter</h4>
                 <p>Get notified about the latest properties in our marketplace.</p>
-                <form class="form-inline" role="form">
-                    <input type="text" placeholder="Enter Your email address" class="form-control">
-                    <button class="btn btn-success" type="button">Notify Me!</button>
-                </form>
+
+                <?= Html::beginForm('', 'post', ['class' => 'form-inline', 'role' => 'form']) ?>
+                <?= Html::textInput('email', '', ['class' => 'form-control', 'placeholder' => 'enter your email address']) ?>
+                <?= Html::submitButton('Notify Me!', ['class' => 'btn btn-success']) ?>
+                <?= Html::endForm() ?>
+
             </div>
 
             <div class="col-lg-3 col-sm-3">
@@ -127,6 +129,8 @@ MainAsset::register($this) ?>
             <div class="row">
                 <div class="col-sm-6 login">
                     <h4>Login</h4>
+
+
                     <form class="" role="form">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
@@ -144,6 +148,8 @@ MainAsset::register($this) ?>
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
                     </form>
+
+
                 </div>
                 <div class="col-sm-6">
                     <h4>New User Sign Up</h4>

@@ -53,7 +53,9 @@ class MainController extends Controller
      */
     public function actionRegister()
     {
-        $regModel = new SignupForm();
+        // наш сценарий
+        $regModel = new SignupForm(['scenario' => 'short_register']);
+//        $regModel->scenario = 'short_register';
 
         // ajax validation
         if(Yii::$app->request->isAjax && Yii::$app->request->isPost) {
