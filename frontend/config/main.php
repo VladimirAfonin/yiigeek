@@ -14,6 +14,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'main', // стартовый роут
     'modules' => [
         'main' => [
             'class' => 'app\modules\main\Module',
