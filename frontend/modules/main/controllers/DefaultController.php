@@ -21,6 +21,12 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    public function actionLoginData()
+    {
+        print(Yii::$app->user->id);
+//        print(Yii::$app->user->user->identity->id);
+    }
+
     /**
      * ex. of our service locator
      */

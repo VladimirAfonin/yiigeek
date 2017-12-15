@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\main\controllers;
 
+use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\SignupForm;
 use yii\web\Controller;
@@ -88,6 +89,33 @@ class MainController extends Controller
         $contactModel = new ContactForm();
 
         return $this->render('contact', compact('contactModel'));
+    }
+
+    /**
+     * login action form
+     *
+     * @return string
+     */
+    public function actionLogin()
+    {
+        $model = new LoginForm();
+        if($model->load(Yii::$app->request->post()) && $model->login()) {
+            $this->goBack();
+        }
+
+        return $this->render('login', compact('model'));
+    }
+
+    /**
+     * logout
+     *
+     * @return Response
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
     }
 
 }

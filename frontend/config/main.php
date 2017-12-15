@@ -19,6 +19,9 @@ return [
         'main' => [
             'class' => 'app\modules\main\Module',
         ],
+        'cabinet' => [
+            'class' => 'app\modules\cabinet\Module',
+        ],
     ],
     'homeUrl' => '/',
     'components' => [
@@ -30,6 +33,8 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            // ставим дефолтную форму логина
+            'loginUrl' => '/main/main/login'
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend

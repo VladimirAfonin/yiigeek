@@ -98,8 +98,9 @@ MainAsset::register($this) ?>
 <!--    --><?php //endif; ?>
 </div>
 
-
-<?= $content ?>
+<div class="container">
+    <?= $content ?>
+</div>
 
 <div class="footer">
 
