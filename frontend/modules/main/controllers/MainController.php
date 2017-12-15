@@ -54,17 +54,25 @@ class MainController extends Controller
     public function actionRegister()
     {
         // наш сценарий
-        $regModel = new SignupForm(['scenario' => 'short_register']);
+        $regModel = new SignupForm();
 //        $regModel->scenario = 'short_register';
 
         // ajax validation
-        if(Yii::$app->request->isAjax && Yii::$app->request->isPost) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($regModel);
+        if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+
+            if ($regModel->load(Yii::$app->request->post()) && $regModel->validate()) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($regModel);
+            }
+//
         }
 
-        if($regModel->load(Yii::$app->request->post()) && $regModel->validate()) {
-
+        if ($regModel->load(Yii::$app->request->post()) && $regModel->validate()) {
+            $regModel->signup();
+            Yii::$app->session->setFlash('success', 'Пользователь успешно добавлен');
+//            $this->refresh();
+        } else {
+//            Yii::$app->session->setFlash('error', 'Пользователь не добавлен');
         }
 
         return $this->render('register', compact('regModel'));

@@ -70,6 +70,34 @@ MainAsset::register($this) ?>
     </div>
     <!-- #Header Starts -->
 </div>
+<div class="container">
+
+<!--    виджет алертов-->
+    <?php $session = Yii::$app->session->getFlash('success');
+        echo \common\widgets\Alert::widget([
+            'options' => [
+                'class' => 'alert-info',
+                'body' => $session
+            ],
+
+        ])
+    ?>
+
+<!--    наш вывод-->
+<!--    --><?php //if(Yii::$app->session->hasFlash('success')): ?>
+<!--        <div class="alert alert-success alert-dismissible" role="alert">-->
+<!--            <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+<!--            --><?//= Yii::$app->session->getFlash('success') ?>
+<!--        </div>-->
+<!--    --><?php //endif; ?>
+<!--    --><?php //if(Yii::$app->session->hasFlash('error')): ?>
+<!--        <div class="alert alert-danger alert-dismissible" role="alert">-->
+<!--            <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+<!--            --><?//= Yii::$app->session->getFlash('error') ?>
+<!--        </div>-->
+<!--    --><?php //endif; ?>
+</div>
+
 
 <?= $content ?>
 

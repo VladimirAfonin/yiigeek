@@ -38,7 +38,7 @@ class SignupForm extends Model
             ['repassword', 'string', 'min' => 6],
             ['repassword', 'compare', 'compareAttribute' => 'password'],
             // our custom validator
-            ['type', 'frontend\validators\CustomSelectTypeValidator' ]
+//            ['type', 'frontend\validators\CustomSelectTypeValidator' ]
         ];
     }
 
