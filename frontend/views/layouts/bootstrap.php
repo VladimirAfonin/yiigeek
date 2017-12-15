@@ -1,6 +1,7 @@
 <?php
 use frontend\assets\MainAsset;
 use yii\helpers\Html;
+use common\widgets\Alert;
 
 MainAsset::register($this) ?>
 
@@ -74,12 +75,11 @@ MainAsset::register($this) ?>
 
 <!--    виджет алертов-->
     <?php $session = Yii::$app->session->getFlash('success');
-        echo \common\widgets\Alert::widget([
+        echo Alert::widget([
             'options' => [
                 'class' => 'alert-info',
                 'body' => $session
             ],
-
         ])
     ?>
 

@@ -7,11 +7,24 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-
         'db' => require(dirname(__DIR__)) . '/config/db.php',
-
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            /* for memcache
+            'class' => 'yii\caching\MemCache',
+            'servers' => [
+                [
+                    'host' => 'server1',
+                    'port' => '11211',
+                    'weight' => 100
+                ],
+                [
+                    'host' => 'server2',
+                    'port' => '11211',
+                    'weight' => 50
+                ]
+            ]
+            */
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
