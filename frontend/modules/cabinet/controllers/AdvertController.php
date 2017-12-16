@@ -6,9 +6,11 @@ use common\controllers\AuthController;
 use Yii;
 use common\models\Advert;
 use common\models\search\AdvertSearch;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * AdvertController implements the CRUD actions for Advert model.
@@ -48,6 +50,39 @@ class AdvertController extends AuthController
     }
 
     /**
+     * второй шаг после сохранения/обновления записи
+     */
+    public function actionStep2()
+    {
+        return 'yes';
+//          $id = Yii::$app->cache->get('id');
+//        $model = Advert::findOne($id);
+//        $image = [];
+//        if($general_image = $model->general_image) {
+//            $image[] = '<img src="/uploads/adverts/' . $model->id . '/general/small_' . $general_image . '" width=250>';
+//        }
+//
+//        if(Yii::$app->request->isPost) {
+//            $this->redirect(Url::to(['advert/']));
+//        }
+//
+//        $path = Yii::getAlias('@frontend/web/uploads/adverts/' . $model->id);
+//        $images_add = [];
+//
+//        try{
+//            if(is_dir($path)) {
+//                $files = FileHelper::findFiles($path);
+//                foreach($files as $file) {
+//
+//                }
+//            }
+//        } catch() {
+//
+//        }
+
+    }
+
+    /**
      * Displays a single Advert model.
      * @param integer $id
      * @return mixed
@@ -69,7 +104,9 @@ class AdvertController extends AuthController
         $model = new Advert();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            // default
+            // return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['step2']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -88,7 +125,9 @@ class AdvertController extends AuthController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            // default
+            // return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['step2']);
         } else {
             return $this->render('update', [
                 'model' => $model,

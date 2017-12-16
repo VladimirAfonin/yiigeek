@@ -14,7 +14,7 @@ class m171215_182220_tbl_subscribe extends Migration
     {
         $this->execute("
             CREATE TABLE IF NOT EXISTS `subscribe` (
-            `idsubscribe` int(11) NOT NULL AUTO_INCREMENT,
+            `id` int(11) NOT NULL AUTO_INCREMENT,
             `email` varchar(50) DEFAULT NULL,
             `date_subscribe` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`idsubscribe`)

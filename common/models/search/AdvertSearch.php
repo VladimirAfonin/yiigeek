@@ -18,7 +18,7 @@ class AdvertSearch extends Advert
     public function rules()
     {
         return [
-            [['id', 'price', 'agent_detail', 'bedroom', 'livingroom', 'parking', 'kitchen', 'hot', 'sold', 'recommend', 'created_at', 'update_at'], 'integer'],
+            [['id', 'price', 'agent_detail', 'bedroom', 'livingroom', 'parking', 'kitchen', 'hot', 'sold', 'recommend', 'created_at', 'updated_at'], 'integer'],
             [['address', 'general_image', 'description', 'location', 'type'], 'safe'],
         ];
     }
@@ -70,7 +70,7 @@ class AdvertSearch extends Advert
             'sold' => $this->sold,
             'recommend' => $this->recommend,
             'created_at' => $this->created_at,
-            'update_at' => $this->update_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'address', $this->address])

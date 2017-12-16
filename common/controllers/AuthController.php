@@ -4,7 +4,7 @@
 namespace common\controllers;
 
 
-use yii\base\Controller;
+use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
