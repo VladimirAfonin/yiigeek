@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "advert".
@@ -33,6 +34,18 @@ class Advert extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'advert';
+    }
+
+    /**
+     * auto fill 'created_at', 'updated_at' fields
+     *
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className()
+        ];
     }
 
     /**
