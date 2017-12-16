@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
+use yii\base\Exception;
 
 /**
  * AdvertController implements the CRUD actions for Advert model.
@@ -54,32 +55,32 @@ class AdvertController extends AuthController
      */
     public function actionStep2()
     {
-        return 'yes';
-//          $id = Yii::$app->cache->get('id');
-//        $model = Advert::findOne($id);
-//        $image = [];
-//        if($general_image = $model->general_image) {
-//            $image[] = '<img src="/uploads/adverts/' . $model->id . '/general/small_' . $general_image . '" width=250>';
-//        }
-//
-//        if(Yii::$app->request->isPost) {
-//            $this->redirect(Url::to(['advert/']));
-//        }
-//
-//        $path = Yii::getAlias('@frontend/web/uploads/adverts/' . $model->id);
-//        $images_add = [];
-//
-//        try{
-//            if(is_dir($path)) {
-//                $files = FileHelper::findFiles($path);
-//                foreach($files as $file) {
-//
-//                }
-//            }
-//        } catch() {
-//
-//        }
+        $id = Yii::$app->cache->get('id');
+        $model = Advert::findOne($id);
+        $image = [];
+        if($general_image = $model->general_image) {
+            $image[] = '<img src="/uploads/adverts/' . $model->id . '/general/small_' . $general_image . '" width=250>';
+        }
 
+        if(Yii::$app->request->isPost) {
+            $this->redirect(Url::to(['advert/']));
+        }
+
+        $path = Yii::getAlias('@frontend/web/uploads/adverts/' . $model->id);
+        $images_add = [];
+
+        try{
+            if(is_dir($path)) {
+                $files = FileHelper::findFiles($path);
+                foreach($files as $file) {
+                    if(strstr($file, "small_") && !strstr($file, "general")) {
+                        $images_add[] = '<img src="/uploads/adverts/' . $model->id . '/' . basename($file) . '" width=250>';
+                    }
+                }
+            }
+        } catch( Exception $e) {}
+
+        return $this->render("step2", compact('model', 'image', 'images_add'));
     }
 
     /**
