@@ -12,6 +12,11 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\base\Exception;
+use yii\helpers\BaseFileHelper;
+use yii\web\UploadedFile;
+use Imagine\Image\Point;
+use yii\imagine\Image;
+use Imagine\Image\Box;
 
 /**
  * AdvertController implements the CRUD actions for Advert model.
@@ -82,6 +87,67 @@ class AdvertController extends AuthController
 
         return $this->render("step2", compact('model', 'image', 'images_add'));
     }
+
+
+    public function actionFileUploadGeneral()
+    {
+        if(Yii::$app->request->isPost){
+            $id = Yii::$app->request->post("advert_id");
+            $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id."/general");
+            BaseFileHelper::createDirectory($path);
+            $model = Advert::findOne($id);
+            $model->scenario = 'step2';
+
+            $file = UploadedFile::getInstance($model,'general_image');
+            $name = 'general.'.$file->extension;
+            $file->saveAs($path .DIRECTORY_SEPARATOR .$name);
+
+            $image  = $path .DIRECTORY_SEPARATOR .$name;
+            $new_name = $path .DIRECTORY_SEPARATOR."small_".$name;
+
+            $model->general_image = $name;
+            $model->save();
+
+            $size = getimagesize($image);
+            $width = $size[0];
+            $height = $size[1];
+
+            Image::frame($image, 0, '666', 0)
+                ->crop(new Point(0, 0), new Box($width, $height))
+                ->resize(new Box(1000,644))
+                ->save($new_name, ['quality' => 100]);
+
+            return true;
+        }
+    }
+
+    public function actionFileUploadImages()
+    {
+        if(Yii::$app->request->isPost){
+            $id = Yii::$app->request->post("advert_id");
+            $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id);
+            BaseFileHelper::createDirectory($path);
+            $file = UploadedFile::getInstanceByName('images');
+            $name = time().'.'.$file->extension;
+            $file->saveAs($path .DIRECTORY_SEPARATOR .$name);
+
+            $image = $path .DIRECTORY_SEPARATOR .$name;
+            $new_name = $path .DIRECTORY_SEPARATOR."small_".$name;
+
+            $size = getimagesize($image);
+            $width = $size[0];
+            $height = $size[1];
+
+            Image::frame($image, 0, '666', 0)
+                ->crop(new Point(0, 0), new Box($width, $height))
+                ->resize(new Box(1000,644))
+                ->save($new_name, ['quality' => 100]);
+
+            sleep(1);
+            return true;
+        }
+    }
+
 
     /**
      * Displays a single Advert model.
