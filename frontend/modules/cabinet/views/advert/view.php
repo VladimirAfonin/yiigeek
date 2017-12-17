@@ -37,6 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->user->email;
                 }
             ],
+            // второй вариант записи
+            'user.email',
+
             'bedroom',
             'livingroom',
             'parking',
