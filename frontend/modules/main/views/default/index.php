@@ -23,12 +23,15 @@
         </div><!-- /sl-slider -->
 
 
+
         <nav id="nav-dots" class="nav-dots">
-            <span class="nav-dot-current"></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <?= ($count_general >= 1) ? '<span class="nav-dot-current"></span>' : '' ?>
+
+            <?php if($count_general > 1) :?>
+                <?php foreach(range(2, $count_general) as $line): ?>
+                    <span></span>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </nav>
 
     </div><!-- /slider-wrapper -->
