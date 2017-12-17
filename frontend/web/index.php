@@ -15,9 +15,11 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 
-
-$service = (new yii\web\Application($config));
 // create service locator
-$service->set('cache', 'yii\caching\FileCache');
+$service = new \yii\di\ServiceLocator();
+$service->set('cache', 'common\cache\Base64Cache');
 
-$service->run();
+$application = new yii\web\Application($config);
+// set our service locator
+$application->set('locator', $service);
+$application->run();

@@ -35,6 +35,18 @@ class DefaultController extends Controller
     }
 
     /**
+     * test case:
+     * use our cache class
+     */
+    public function actionCacheTest()
+    {
+        $locator = Yii::$app->locator;
+        $locator->cache->set('test', 1);
+
+        print $locator->cache->get('test');
+    }
+
+    /**
      * ex. of our service locator
      */
     public function actionService()
