@@ -8,6 +8,7 @@ $params = array_merge(
 
 // set our alias
 Yii::setAlias('@test', '@frontend/test');
+Yii::setAlias('@mybackend', '@backend/test');
 
 return [
     'id' => 'app-frontend',
