@@ -120,4 +120,18 @@ class Advert extends \yii\db\ActiveRecord
         // second variant
 //        Yii::$app->session->set('id', $this->id);
     }
+
+    /**
+     * for upload image
+     * validate rule scenario
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['step2'] = ['general_image'];
+
+        return $scenarios;
+    }
 }

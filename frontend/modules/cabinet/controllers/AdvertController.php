@@ -89,10 +89,15 @@ class AdvertController extends AuthController
     }
 
 
+    /**
+     * загрузка главного изображения
+     *
+     * @return bool
+     */
     public function actionFileUploadGeneral()
     {
         if(Yii::$app->request->isPost){
-            $id = Yii::$app->request->post("advert_id");
+            $id = Yii::$app->request->post("id");
             $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id."/general");
             BaseFileHelper::createDirectory($path);
             $model = Advert::findOne($id);
@@ -121,10 +126,15 @@ class AdvertController extends AuthController
         }
     }
 
+    /**
+     * загрузка нескольких картинок
+     *
+     * @return bool
+     */
     public function actionFileUploadImages()
     {
         if(Yii::$app->request->isPost){
-            $id = Yii::$app->request->post("advert_id");
+            $id = Yii::$app->request->post("id");
             $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id);
             BaseFileHelper::createDirectory($path);
             $file = UploadedFile::getInstanceByName('images');
