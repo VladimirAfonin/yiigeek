@@ -30,7 +30,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
+<!--    --><?//= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
+    
+    <?= \yii\widgets\MaskedInput::widget([
+            'name' => 'location',
+        'mask' => '9999-9999-9999-9999'
+    ]) ?>
 
     <?= $form->field($model, 'hot')->radioList(['No', 'Yes']) ?>
 
