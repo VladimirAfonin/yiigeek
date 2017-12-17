@@ -31,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'price',
             'address',
-            'agent_detail',
+            [
+                'attribute' => 'agent_detail',
+                'value' => function($data) {
+                    return $data->user->email;
+                }
+            ],
             'bedroom',
             'livingroom',
             'parking',
@@ -44,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'recommend',
             'created_at',
-            'update_at',
+            'updated_at',
         ],
     ]) ?>
 

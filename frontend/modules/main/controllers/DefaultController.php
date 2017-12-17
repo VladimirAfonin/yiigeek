@@ -3,6 +3,7 @@
 namespace app\modules\main\controllers;
 
 use frontend\components\Common;
+use yii\db\Query;
 use yii\web\Controller;
 use Yii;
 
@@ -18,7 +19,13 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $this->layout = 'bootstrap';
-        return $this->render('index');
+
+        $query = new Query();
+        $command = $query->from('advert')->orderBy('id desc')->limit(5);
+        $result = $command->all();
+        $count_general = $command->count();
+
+        return $this->render('index', compact('result', 'count_general'));
     }
 
     public function actionLoginData()

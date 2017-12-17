@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use common\models\User;
 
 /**
  * This is the model class for table "advert".
@@ -46,6 +47,16 @@ class Advert extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::className()
         ];
+    }
+
+    /**
+     * relate to User
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'agent_detail']);
     }
 
     /**
