@@ -1,14 +1,18 @@
 <?php
 namespace app\modules\main\controllers;
 
+use common\filters\FilterAdvert;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\SignupForm;
+use yii\base\DynamicModel;
 use yii\web\Controller;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use common\models\Advert;
+use frontend\components\Common;
 
 
 class MainController extends Controller
@@ -33,6 +37,21 @@ class MainController extends Controller
             ]
             */
 
+        ];
+    }
+
+    /**
+     * подключили наш фильтр
+     *
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'only' => ['view-advert'],
+                'class' => FilterAdvert::className()
+            ]
         ];
     }
 
@@ -116,6 +135,40 @@ class MainController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionViewAdvert($id)
+    {
+        // правила для валидации динамической модели
+        $data = ['name', 'email', 'text'];
+
+        // динамическая модель
+        $model_feedback = new DynamicModel($data);
+        $model_feedback->addRule('name', 'required');
+        $model_feedback->addRule('email', 'required');
+        $model_feedback->addRule('text', 'required');
+        $model_feedback->addRule('email', 'email');
+
+        if(Yii::$app->request->isPost) {
+            if($model_feedback->load(Yii::$app->request->post()) && $model_feedback->validate()) {
+                Yii::$app->common->sendMail('subject advert', $model_feedback->text);
+            }
+        }
+
+        $model = Advert::findOne($id);
+        // получаем user по связи
+        $user = $model->user;
+
+        $images = Common::getImageAdvert($model, false);
+        $current_user = ['email' => '', 'username' => ''];
+
+        if(!Yii::$app->isGuest) {
+            $current_user['email'] = Yii::$app->user->identity->email;
+            $current_user['username'] = Yii::$app->user->identity->username;
+        }
+
+        return $this->render('view_advert', compact('model', 'model_feedback', 'user'));
+
     }
 
 }
