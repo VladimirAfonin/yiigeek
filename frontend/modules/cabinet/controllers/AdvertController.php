@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
 use Imagine\Image\Point;
 use yii\imagine\Image;
 use Imagine\Image\Box;
+use yii\web\View;
 
 /**
  * AdvertController implements the CRUD actions for Advert model.
@@ -39,6 +40,11 @@ class AdvertController extends AuthController
 //            ],
 //        ];
 //    }
+
+    public function init()
+    {
+        Yii::$app->view->registerJsFile('http://maps.googleapis.com/maps/api/js?sensor=false', ['position' => View::POS_HEAD]);
+    }
 
     /**
      * Lists all Advert models.

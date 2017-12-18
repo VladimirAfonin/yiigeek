@@ -51,8 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'sold',
             'type',
             'recommend',
-            'created_at',
-            'updated_at',
+            'created_at:date',
+            'updated_at:date',
         ],
     ]) ?>
 

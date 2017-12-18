@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use common\models\Advert;
 use frontend\components\Common;
+use dosamigos\google\maps\{LatLng, Map};
+use dosamigos\google\maps\overlays\Marker;
+
 
 
 class MainController extends Controller
@@ -166,6 +169,25 @@ class MainController extends Controller
             $current_user['email'] = Yii::$app->user->identity->email;
             $current_user['username'] = Yii::$app->user->identity->username;
         }
+
+        // get our coordinates
+        $coords = str_replace(['(', ')'], '', $model->location);
+        $coords = explode(',', $coords);
+
+        $coord = new LatLng(['lat' => $coords[0], 'lng' => $coords[1]]);
+
+        $map = new Map([
+            'center' => $coord,
+            'zoom' => 20,
+        ]);
+
+        $marker = new Marker([
+            'position' => $coord,
+            'title' => Common::getTitleAdvert($model)
+        ]);
+
+        $map->addOverlay($marker);
+
 
         return $this->render('view_advert', compact('model', 'model_feedback', 'user'));
 
