@@ -48,7 +48,10 @@ class MainController extends Controller
     public function behaviors()
     {
         return [
-            'filter' => FilterAdvert::className()
+            [
+                'only' => ['view-advert'],
+                'class' => FilterAdvert::className()
+            ]
         ];
     }
 
