@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\main\controllers;
 
+use common\filters\FilterAdvert;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\SignupForm;
@@ -36,6 +37,18 @@ class MainController extends Controller
             ]
             */
 
+        ];
+    }
+
+    /**
+     * подключили наш фильтр
+     *
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'filter' => FilterAdvert::className()
         ];
     }
 
