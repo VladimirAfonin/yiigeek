@@ -6,6 +6,7 @@ use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\SignupForm;
 use yii\base\DynamicModel;
+use yii\data\Pagination;
 use yii\web\Controller;
 use Yii;
 use yii\web\Response;
@@ -165,7 +166,7 @@ class MainController extends Controller
         $images = Common::getImageAdvert($model, false);
         $current_user = ['email' => '', 'username' => ''];
 
-        if(!Yii::$app->isGuest) {
+        if(!Yii::$app->user->isGuest) {
             $current_user['email'] = Yii::$app->user->identity->email;
             $current_user['username'] = Yii::$app->user->identity->username;
         }
@@ -191,6 +192,44 @@ class MainController extends Controller
 
         return $this->render('view_advert', compact('model', 'model_feedback', 'user'));
 
+    }
+
+    /**
+     * find 'advert' action
+     *
+     * @param string $search
+     * @param string $price
+     * @param string $apartment
+     * @return string
+     */
+    public function actionFind($search='', $price='', $apartment='')
+    {
+        $this->layout = 'sell';
+
+        // query builder
+        $query = Advert::find();
+        $query->filterWhere(['like', 'address', $search])
+            ->orFilterWhere(['like', 'description', $search])
+            ->andFilterWhere(['type' => $apartment]);
+
+        if(isset($price)) {
+            $prices = explode('-', $price);
+            if(isset($prices[0]) && isset($prices[1])) {
+                $query->andWhere(['between', 'price', $prices[0], $prices[1]]);
+            } else {
+                $query->andWhere(['>=', 'price', $prices[0]]);
+            }
+        }
+
+        // pagination
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $pages->setPageSize(1);
+
+        $model = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $request = Yii::$app->request;
+
+        return $this->render("find", compact('model', 'request', 'pages'));
     }
 
 }

@@ -1,4 +1,5 @@
-<?php use frontend\components\Common; ?>
+<?php use frontend\components\Common;
+use yii\helpers\Url;?>
 <div class="">
 
 
@@ -44,7 +45,7 @@
             <div class="row">
 
 
-                <?php \yii\helpers\Html::beginForm() ?>
+                <?= \yii\helpers\Html::beginForm(Url::to('main/main/find/'),'get') ?>
                 <div class="col-lg-6 col-sm-6">
                     <?= \yii\helpers\Html::textInput('search', '', ['class' => 'form-control', 'placeholder' => 'Search of properties']) ?>
                     <div class="row">
@@ -67,9 +68,9 @@
                                 <?= \yii\helpers\Html::dropDownList(
                                     'price', '',
                                 [
-                                    '$150,000' => '$150,000 - $200,000',
-                                    '$200,000' => '$200,000 - $250,000',
-                                    '$300,000' => '$300,000 - above',
+                                    '150000-200000' => '$150,000 - $200,000',
+                                    '200000-250000' => '$200,000 - $250,000',
+                                    '300' => '$300,000 - above',
                                 ],
                                     ['class' => 'form-control']
 

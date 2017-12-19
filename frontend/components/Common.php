@@ -64,5 +64,16 @@ class Common extends Component
         return $image;
     }
 
+    /**
+     * url advert
+     *
+     * @param $row
+     * @return string
+     */
+    public static function getUrlAdvert($row)
+    {
+        return Url::to(['/main/main/view-advert', 'id' => $row['id']]);
+    }
+
 
 }
