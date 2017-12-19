@@ -2,7 +2,7 @@
 use frontend\assets\MainAsset;
 use yii\helpers\Html;
 use common\widgets\Alert;
-
+use yii\bootstrap\Nav;
 MainAsset::register($this) ?>
 
 <?php $this->beginPage() ?>
@@ -40,13 +40,24 @@ MainAsset::register($this) ?>
 
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="agents.html">Agents</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                <? $menuItems = [
+                    ['label' => 'Home', 'url' => '/'],
+                    ['label' => 'About', 'url' => ['/main/main/page', 'view' => 'about']],
+                    ['label' => 'Contact', 'url' => ['/main/main/contact', 'view' => 'contact']]
+                ] ?>
+                <?= Nav::widget([
+                        'options' => ['class' => 'nav navbar-nav navbar-right'],
+                        'items' => $menuItems
+                    ])  ?>
+
+
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li class="active"><a href="index.html">Home</a></li>-->
+<!--                    <li><a href="about.html">About</a></li>-->
+<!--                    <li><a href="agents.html">Agents</a></li>-->
+<!--                    <li><a href="blog.html">Blog</a></li>-->
+<!--                    <li><a href="contact.html">Contact</a></li>-->
+<!--                </ul>-->
             </div>
             <!-- #Nav Ends -->
 
