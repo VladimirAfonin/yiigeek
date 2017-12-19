@@ -6,6 +6,9 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+//    'errorHandler' => [
+//        'maxSourceLines' => 20
+//    ],
     'components' => [
         'db' => require(dirname(__DIR__)) . '/config/db.php',
         'cache' => [
@@ -58,8 +61,7 @@ return [
 //                'encryption' => 'ssl'
             ],
         ],
-        'errorHandler' => [
-            'maxSourceLines' => 20
-        ],
+//
     ],
+
 ];
