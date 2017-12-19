@@ -35,6 +35,10 @@ class MainController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'page' => [
+                'class' => 'yii\web\ViewAction',
+                'layout' => 'bootstrap'
+            ]
             /*
             'contact' => [
                 'class' => 'frontend\actions\TestAction'
@@ -160,7 +164,7 @@ class MainController extends Controller
         }
 
         $model = Advert::findOne($id);
-        // получаем user по связи
+        // get user
         $user = $model->user;
 
         $images = Common::getImageAdvert($model, false);

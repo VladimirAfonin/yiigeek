@@ -8,6 +8,7 @@ use yii\web\UploadedFile;
 use yii\imagine\Image;
 use Imagine\Image\Box;
 use frontend\models;
+use frontend\models\ChangePasswordForm;
 
 /**
  * Default controller for the `cabinet` module
