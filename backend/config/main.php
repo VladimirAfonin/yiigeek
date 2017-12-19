@@ -6,6 +6,9 @@ $params = array_merge(
     require __DIR__ . '/params-local.php'
 );
 
+// set alias for our theme
+Yii::setAlias('theme_advert', '@frontend/themes/advert/views');
+
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
@@ -18,8 +21,16 @@ return [
             'theme' => [
                 'pathMap' => [
                     '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                ],
+                /* connecting our themes advert
+                [
+                    'class' => '@frontend/themes/advert/Theme',
+                    'basePath' => '@app/',
+                    'baseUrl' => '@web/'
                 ]
-            ]
+                */
+            ],
+
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
