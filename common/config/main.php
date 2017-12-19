@@ -31,6 +31,9 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'main/main' => 'main',
+                'pages/<view:[a-zA-Z]+>' => 'main/main/page',
+                'view-advert/<id:\d+>' => 'main/main/view-advert',
+                'cabinet/<action_cabinet:(settings|change-password)>' => 'cabinet/default/<action_cabinet>'
 //                'search' => 'main/find',
             ],
         ],
