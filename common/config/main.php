@@ -30,6 +30,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'main/main' => 'main',
+//                'search' => 'main/find',
             ],
         ],
         'mailer' => [
@@ -51,10 +53,10 @@ return [
                 'encryption' => 'tls'
 //                'port' =>  '465',
 //                'encryption' => 'ssl'
-
             ],
-
-
+        ],
+        'errorHandler' => [
+            'maxSourceLines' => 20
         ],
     ],
 ];

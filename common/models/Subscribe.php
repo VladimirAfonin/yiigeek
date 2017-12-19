@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use frontend\components\Common;
 
 /**
  * This is the model class for table "subscribe".
@@ -13,6 +14,8 @@ use Yii;
  */
 class Subscribe extends \yii\db\ActiveRecord
 {
+    const EVENT_NOTIFICATION_ADMIN = 'new-notification';
+
     /**
      * @inheritdoc
      */
@@ -45,11 +48,32 @@ class Subscribe extends \yii\db\ActiveRecord
     }
 
     /**
+     * initialize
+     */
+    public function init()
+    {
+        $this->on(self::EVENT_NOTIFICATION_ADMIN, [$this, 'notification']);
+    }
+
+    /**
      * @inheritdoc
      * @return SubscribeQuery the active query used by this AR class.
      */
     public static function find()
     {
         return new SubscribeQuery(get_called_class());
+    }
+
+    /**
+     * send notification on event
+     *
+     * @param $event
+     */
+    public function notification($event)
+    {
+        $model = User::find()->where(['roles' => 'admin'])->all();
+        foreach($model as $user) {
+            (new Common)->sendMail('Notification', 'new subscribe', $user['email']);
+        }
     }
 }
