@@ -15,7 +15,7 @@ use yii\web\NotFoundHttpException;
 
 class AdvertController extends AuthController
 {
-    /*public function behaviors()
+    public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
             'authenticator' => [
@@ -27,7 +27,7 @@ class AdvertController extends AuthController
                 },
             ]
         ]);
-    }*/
+    }
 
     /**
      * main page
